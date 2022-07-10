@@ -170,7 +170,7 @@ type IJsonQueryOrderField = {
 interface IJsonQueryRelation<TEntity = ObjectLiteral, TN = TEntityRelations<TEntity>> {
   name: TN;
   // @ts-ignore
-  where?: IJsonQueryWhere<Pick<TEntity, TN>>;
+  where?: IJsonQueryWhere<TEntity[TN]>;
 }
 
 interface IJsonQuery<TEntity = ObjectLiteral> {
