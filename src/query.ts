@@ -46,7 +46,7 @@ enum JQJunction {
 
 export type ObjectLiteral = Record<string | symbol | number, any>;
 
-export type ToObject<T> = T extends readonly any[] ? T[0] : T;
+export type ToObject<T> = NonNullable<T extends readonly any[] ? T[0] : T>;
 
 export type Without<T, TU> = {
   [P in Exclude<keyof T, keyof TU>]?: never;
