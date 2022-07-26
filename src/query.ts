@@ -37,6 +37,8 @@ enum JQOperator {
   greaterOrEqual = '>=',
   less = '<',
   lessOrEqual = '<=',
+  isNULL = 'is_null',
+  isNotNULL = '!is_null',
 }
 
 enum JQJunction {
@@ -100,6 +102,12 @@ type TFilterCondition = XOR_MULTIPLE<[
     {
       [JQOperator.in]: TNonEmptyArray<TFilterValue>;
     } & TFilterOptions,
+    {
+      [JQOperator.isNULL]: null;
+    },
+    {
+      [JQOperator.isNotNULL]: null;
+    },
     {
       [JQOperator.notIn]: TNonEmptyArray<TFilterValue>;
     } & TFilterOptions,
