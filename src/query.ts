@@ -179,6 +179,14 @@ interface IJsonQueryRelation<TEntity = ObjectLiteral, TN = TEntityRelations<TEnt
   name: TN;
   // @ts-ignore
   where?: IJsonQueryWhere<TEntity[TN]>;
+  orderBy?: {
+    // @ts-ignore
+    [field in TEntityFields<TEntity[TN]>]?: keyof typeof JQOrder | IJsonQueryOrderField;
+  };
+  // @ts-ignore
+  groupBy?: TEntityFields<TEntity[TN]>[];
+  page?: number;
+  pageSize?: number;
 }
 
 interface IJsonQuery<TEntity = ObjectLiteral> {
