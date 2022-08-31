@@ -187,6 +187,7 @@ interface IJsonQueryRelation<TEntity = ObjectLiteral, TN = TEntityRelations<TEnt
   groupBy?: TEntityFields<TEntity[TN]>[];
   page?: number;
   pageSize?: number;
+  isLateral?: boolean; // enable possible to use groupBy, orderBy, pagination
 }
 
 interface IJsonQuery<TEntity = ObjectLiteral> {
