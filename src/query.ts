@@ -202,8 +202,9 @@ interface IJsonQuery<TEntity = ObjectLiteral> {
   pageSize?: number;
 }
 
-interface IQuery<TEntity = ObjectLiteral> {
+interface IQuery<TEntity = ObjectLiteral, TPayload = Record<string, any>> {
   query?: IJsonQuery<TEntity>;
+  payload?: TPayload;
 }
 
 export type {
