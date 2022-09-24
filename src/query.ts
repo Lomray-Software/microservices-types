@@ -2,14 +2,14 @@
  * Extends entity interface from this interface
  */
 interface IEntity {
-  isEntity: boolean;
+  isEntity?: boolean;
 }
 
 /**
  * Extends entity class from this class
  */
 class CEntity implements IEntity {
-  isEntity: boolean;
+  isEntity?: boolean;
 }
 
 enum JQOrder {
@@ -126,12 +126,12 @@ type TWithRelationFields<TE extends ObjectLiteral,
   > = ToObject<TE[TP]> extends IEntity
   ? TExistKeys extends { [key in TP]: any } // avoid infinite recursion
     ? never
-    : keyof {
+    : keyof ({
       // @ts-ignore
       [PF in keyof Omit<ToObject<TE[TP]>, keyof IEntity> as `${TP}.${TWithRelationFields<ToObject<TE[TP]>,
         PF,
         { [key in TP | keyof TExistKeys]: any }>}`]: string;
-    } // return relation fields
+    } & { [key in TP]: any }) // return relation fields
   : TP; // or return entity field
 
 type TWithRelations<TE extends ObjectLiteral,
@@ -154,8 +154,7 @@ type TEntityRelations<TEntity> = keyof {
 // Get entity keys and keys with relations
 type TEntityFields<TEntity> = keyof Omit<{
   [P in keyof TEntity as TWithRelationFields<TEntity, P>]: any;
-},
-  keyof IEntity>;
+}, keyof IEntity>;
 
 type TFieldCondition = string | number | null | TFilterCondition;
 
