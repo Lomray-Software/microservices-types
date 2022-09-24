@@ -2,14 +2,14 @@
  * Extends entity interface from this interface
  */
 interface IEntity {
-  isEntity?: never;
+  isEntity: boolean;
 }
 
 /**
  * Extends entity class from this class
  */
 class CEntity implements IEntity {
-  isEntity?: never;
+  isEntity: boolean;
 }
 
 enum JQOrder {
