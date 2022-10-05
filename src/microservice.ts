@@ -10,6 +10,12 @@ interface IBaseException {
   payload?: Record<string, any> | IValidationErrorFields[];
 }
 
+interface IMicroserviceRequest<TParams = Record<string, any>, TPayload = Record<string, any>> {
+  id?: string | number;
+  method: string;
+  params?: TParams & { payload?: TPayload };
+}
+
 /**
  * JSON RPC response structure
  */
@@ -25,4 +31,4 @@ interface IValidationErrorFields {
   constraints: Record<string, string>;
 }
 
-export type { IBaseException, IMicroserviceResponse, IValidationErrorFields };
+export type { IBaseException, IMicroserviceRequest, IMicroserviceResponse, IValidationErrorFields };
