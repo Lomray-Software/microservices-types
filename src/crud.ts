@@ -24,10 +24,15 @@ interface IRemove<TEntity> {
   entities?: TEntity[];
 }
 
+interface ICount {
+  count: number;
+}
+
 export type {
   ICreate,
   IList,
   IView,
   IUpdate,
   IRemove,
+  ICount,
 };
