@@ -72,36 +72,38 @@ type TNonEmptyArray<T> = [T, ...T[]];
 
 type TFilterValue = string | number | null;
 
-type TFilterOptions = { type?: JQFieldType };
+type TFilterFieldOptions = { type?: JQFieldType };
 
-type TFilterLess = { [JQOperator.less]: TFilterValue } & TFilterOptions;
+type TFilterValueOptions = { isField?: boolean };
 
-type TFilterLessOrEqual = { [JQOperator.lessOrEqual]: TFilterValue } & TFilterOptions;
+type TFilterLess = { [JQOperator.less]: TFilterValue } & TFilterFieldOptions;
 
-type TFilterGreater = { [JQOperator.greater]: TFilterValue } & TFilterOptions;
+type TFilterLessOrEqual = { [JQOperator.lessOrEqual]: TFilterValue } & TFilterFieldOptions;
+
+type TFilterGreater = { [JQOperator.greater]: TFilterValue } & TFilterFieldOptions;
 
 type TFilterGreaterOrEqual = {
   [JQOperator.greaterOrEqual]: TFilterValue;
-} & TFilterOptions;
+} & TFilterFieldOptions;
 
 type TFilterCondition = XOR_MULTIPLE<[
     {
       [JQOperator.equal]: TFilterValue;
-    } & TFilterOptions,
+    } & TFilterFieldOptions & TFilterValueOptions,
     {
       [JQOperator.notEqual]: TFilterValue;
-    } & TFilterOptions,
+    } & TFilterFieldOptions & TFilterValueOptions,
     {
       [JQOperator.between]: [TFilterValue, TFilterValue];
       isIncludes?: boolean;
-    } & TFilterOptions,
+    } & TFilterFieldOptions,
     {
       [JQOperator.like]: string;
       insensitive?: boolean;
-    } & TFilterOptions,
+    } & TFilterFieldOptions,
     {
       [JQOperator.in]: TNonEmptyArray<TFilterValue>;
-    } & TFilterOptions,
+    } & TFilterFieldOptions,
     {
       [JQOperator.isNULL]: null;
     },
@@ -110,7 +112,7 @@ type TFilterCondition = XOR_MULTIPLE<[
     },
     {
       [JQOperator.notIn]: TNonEmptyArray<TFilterValue>;
-    } & TFilterOptions,
+    } & TFilterFieldOptions,
   XOR_MULTIPLE<[
     TFilterLess,
     TFilterLessOrEqual,
@@ -225,7 +227,8 @@ export type {
   TFilterGreater,
   TFilterLessOrEqual,
   TFilterLess,
-  TFilterOptions,
+  TFilterFieldOptions,
+  TFilterValueOptions,
   TFilterValue,
   TNonEmptyArray,
 }
