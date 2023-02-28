@@ -174,6 +174,7 @@ type IJsonQueryWhere<TEntity = ObjectLiteral> =
 type IJsonQueryOrderField = {
   order: keyof typeof JQOrder;
   nulls?: keyof typeof JQOrderNulls;
+  isEmptyToNull?: boolean;
 };
 
 interface IJsonQueryRelation<TEntity = ObjectLiteral, TN = TEntityRelations<TEntity>> {
