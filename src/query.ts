@@ -179,6 +179,7 @@ type IJsonQueryOrderField = {
 
 interface IJsonQueryRelation<TEntity = ObjectLiteral, TN = TEntityRelations<TEntity>> {
   name: TN;
+  as?: string; // rename relation
   // @ts-ignore
   where?: IJsonQueryWhere<TEntity[TN]>;
   orderBy?: {
