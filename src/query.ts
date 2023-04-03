@@ -68,7 +68,7 @@ export type XOR_MULTIPLE<TR extends unknown[]> = {
   1: TR extends readonly [infer U, ...infer V] ? CurryXOR<U, V>[0] : never;
 }[TR extends readonly [infer _, ...infer __] ? 1 : 0];
 
-type TNonEmptyArray<T> = [T, ...T[]];
+type TNonEmptyArray<T> = T[];
 
 type TFilterValue = string | number | null;
 
