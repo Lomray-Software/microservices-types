@@ -24,6 +24,10 @@ interface IRemove<TEntity> {
   entities?: TEntity[];
 }
 
+interface IRestore<TEntity> {
+  restored: TEntity[];
+}
+
 interface ICount {
   count: number;
 }
@@ -34,5 +38,6 @@ export type {
   IView,
   IUpdate,
   IRemove,
+  IRestore,
   ICount,
 };
