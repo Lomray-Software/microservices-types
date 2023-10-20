@@ -209,6 +209,8 @@ interface IJsonQuery<TEntity = ObjectLiteral> {
 interface IQuery<TEntity = ObjectLiteral, TPayload = Record<string, any>> {
   query?: IJsonQuery<TEntity>;
   payload?: TPayload;
+  // Supported by view, list and count
+  hasRemoved?: boolean;
 }
 
 export type {
