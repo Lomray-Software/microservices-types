@@ -194,15 +194,18 @@ interface IJsonQueryRelation<TEntity = ObjectLiteral, TN = TEntityRelations<TEnt
   isSelect?: boolean; // include relation to response - default: true
 }
 
+interface IJsonQueryAttribute<TEntity = ObjectLiteral> {
+  name: TEntityFields<TEntity>;
+  isDistinct?: boolean;
+}
+
 interface IJsonQuery<TEntity = ObjectLiteral> {
-  attributes?: TEntityFields<TEntity>[];
+  attributes?: (TEntityFields<TEntity> | IJsonQueryAttribute<TEntity>)[];
   relations?: (TEntityRelations<TEntity> | IJsonQueryRelation<TEntity>)[];
   where?: IJsonQueryWhere<TEntity>;
   orderBy?: {
     [field in TEntityFields<TEntity>]?: keyof typeof JQOrder | IJsonQueryOrderField;
   };
-  // Should apply distinct to query
-  distinct?: boolean; // return only unique entity field values
   groupBy?: TEntityFields<TEntity>[];
   page?: number;
   pageSize?: number;
@@ -222,6 +225,7 @@ export type {
   IJsonQueryOrderField,
   IJsonQueryWhere,
   IJsonQueryRelation,
+  IJsonQueryAttribute,
   TEntityFields,
   TFilterFields,
   TFieldCondition,
