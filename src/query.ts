@@ -201,6 +201,7 @@ interface IJsonQuery<TEntity = ObjectLiteral> {
   orderBy?: {
     [field in TEntityFields<TEntity>]?: keyof typeof JQOrder | IJsonQueryOrderField;
   };
+  distinct?: TEntityFields<TEntity>; // return only unique entity field values
   groupBy?: TEntityFields<TEntity>[];
   page?: number;
   pageSize?: number;
